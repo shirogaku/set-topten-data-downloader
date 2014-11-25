@@ -10,7 +10,7 @@ RenameCatData();
 
 sub GetData{
 my $ua = LWP::UserAgent->new(
-	agent => "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.65 Safari/537.36"
+	agent => "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.65 Safari/537.36" #Your User-agent here
 );
 my $resp = $ua->get("http://marketdata.set.or.th/mkt/topten.do");
 open("FILE",">","RawData.txt") or die "Could not create raw data file";
@@ -55,22 +55,22 @@ sub FilterDataFromSite{
 sub CategorizeData{
 	open("Data","<","Data.txt") or die "Data file not found";
 	open("CatData",">","CatData.txt") or die "Could not create data file";
-	print CatData "Most Active Value\n";
+	print CatData "Most Active Value ('000 Baht)\n";
 	my $i;
 	@CONTENT = <Data>;
 	for($i=0 ; $i<10 ; $i++){
 		print CatData $CONTENT[$i];
 	}
-	print CatData "\nTop Gainer\n";
-	for( ; $i<20 ; $i++){
+	print CatData "\nMost Active Volume (Shares)\n";
+	for($i=20 ; $i<30 ; $i++){
 		print CatData $CONTENT[$i];	
 	}
-	print CatData "\nMost Active Volume\n";
-	for( ; $i<30 ; $i++){
+	print CatData "\nTop Gainer\n";
+	for($i=10 ; $i<20 ; $i++){
 		print CatData $CONTENT[$i];
 	}
 	print CatData "\nTop Loser\n";
-	for( ; $i<40 ; $i++){
+	for($i=30 ; $i<40 ; $i++){
 		print CatData $CONTENT[$i];
 	}
 	close(CatData);
