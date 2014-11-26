@@ -34,7 +34,7 @@ sub FilterDataFromSite{
 			@content[$i] .= "- (-)";
 			$i++;
 		}
-		elsif($_ =~ /\<td\salign\=\"right\"\>\s\<font\sstyle\=\"color\:\sgreen\;\"\>(\+\d{1,2}[.]\d{1,2})\<\/font\> \<font\sstyle\=\"color\:\sgreen\;\"\>(\(\+\d{1,2}[.]\d{1,2}\%\))\<\/font\>\<\/td\>/){
+		elsif($_ =~ /\<td\salign\=\"right\"\>\s\<font\sstyle\=\"color\:\sgreen\;\"\>(\+\d{1,2}[.]\d{1,2})\<\/font\> \<font\sstyle\=\"color\:\sgreen\;\"\>(\(\+\d{1,3}[.]\d{1,2}\%\))\<\/font\>\<\/td\>/){
 			#Filter stock which is gainer
 			@content[$i] .= $1 . " " . $2;
 			$i++;
