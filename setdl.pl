@@ -1,24 +1,8 @@
 use LWP::UserAgent;
 use File::Copy;
 use Time::Piece;
-no warnings 'experimental::smartmatch';
 
-HolidayCheck();
 RenameData(CategorizeCreateData(FilterDataFromSite(GetData())));
-
-sub HolidayCheck{
-	my $holdate = localtime->strftime('%d%m');
-	my @holiday;
-	open(my $va , "<" , "holiday.txt");
-	while(<$va>){
-		push(@holiday , $_);
-	}
-	close($va);
-	if($holdate."\n" ~~ @holiday){
-		die "SET Closed\n";
-	}
-	#Press Enter once (\n) after write last holiday in holiday.txt
-}
 
 sub GetData{
 	my $ua = LWP::UserAgent->new(
@@ -61,7 +45,6 @@ sub FilterDataFromSite{
 			$i++;
 		}
 	}
-	close($va);
 	return @content;
 }
 
