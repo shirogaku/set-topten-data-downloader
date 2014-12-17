@@ -17,7 +17,7 @@ sub FilterDataFromSite{
 	my $i=0;
 	open(my $va , "<" , \@_[0]);
 	while(<$va>){
-		if($_ =~ /symbol=([A-Z-]{1,6})/){
+		if($_ =~ /symbol=([A-Z1-9-]{1,6})/){
 			#Filter Stock Name
 			@content[$i] = $1."\t";
 		}
